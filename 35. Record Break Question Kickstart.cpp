@@ -7,53 +7,75 @@ conditions are for record break is that,
 #include <iostream>
 #include <climits>
 using namespace std;
+/*    void recbr(int n ,int arr[])
+    {
+        int ans=0,temp=0;
+        for(int i=0;i<n;i++)
+        {
+            if(i==0)
+            {
+                if(arr[i]>arr[i+1])
+                        {
+                            ans++;
+                        }
+            }
+            else if(i>0 && i<n-1)
+            {
+                for(int j=0;j<i;j++)
+                {
+                    if(arr[j]<arr[i])
+                    {
+                        temp++;
+                    }
+                }
+                if(temp==i)
+                {
+                    if(arr[i]>arr[i+1])
+                        {
+                            ans++;
+                        }
+                }
+            temp=0;
+            }
+            else if(i==n-1)
+            {
+                for(int j=0;j<i;j++)
+                {
+                    if(arr[j]<arr[i])
+                    {
+                        temp++;
+                    }
+                }
+                if(temp==i)
+                {
+                    if(arr[i]>arr[i+1])
+                        {
+                            ans++;
+                        }
+                }
+            }
+        }
+        cout<<ans;
+        return;
+    }
+*/
+//optimised solution with reduced time complexity
 void recbr(int n ,int arr[])
 {
-    int ans=0,temp=0;
+    if(n==1)
+    {
+        cout<<"1"<<endl;
+        return;
+    }
+    int ans=0;
+    int mx=INT_MIN;
     for(int i=0;i<n;i++)
     {
-        if(i==0)
+        if(arr[i]>mx && arr[i]>arr[i+1])
         {
-            if(arr[i]>arr[i+1])
-                    {
-                        ans++;
-                    }
+            ans++;
         }
-        else if(i>0 && i<n-1)
-        {
-            for(int j=0;j<i;j++)
-            {
-                if(arr[j]<arr[i])
-                {
-                    temp++;
-                }
-            }
-            if(temp==i)
-            {
-                if(arr[i]>arr[i+1])
-                    {
-                        ans++;
-                    }
-            }
-        temp=0;
-        }
-        else if(i==n-1)
-        {
-            for(int j=0;j<i;j++)
-            {
-                if(arr[j]<arr[i])
-                {
-                    temp++;
-                }
-            }
-            if(temp==i)
-            {
-                if(arr[i]>arr[i+1])
-                    {
-                        ans++;
-                    }
-            }
-        }
+        mx=max(mx,arr[i]);
     }
     cout<<ans;
     return;
@@ -62,7 +84,8 @@ int main()
 {
     int a;
     cin>>a;
-    int arr[a];
+    int arr[a+1];       //see in the function as used
+    arr[a]=-1;
     for(int i=0;i<a;i++)
         {
             cin>>arr[i];
